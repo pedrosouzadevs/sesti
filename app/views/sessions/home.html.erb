@@ -1,0 +1,6 @@
+<h1>Opa</h1>
+<%= simple_form_for @session do |f| %>
+        <%= f.input :info, :label => 'Put your Session Data below', :required => false %>
+        <%= f.input :equip_id, collection: 1..(Equip.all.count), label: 'Choose your Set' %>
+        <%= f.submit 'Create',  class: "btn btn-primary" %>
+<% end %>
