@@ -1,6 +1,19 @@
-<h1>Opa</h1>
+<%# <h1>Put your Session Data below:</h1>
 <%= simple_form_for @session do |f| %>
-        <%= f.input :info, :label => 'Put your Session Data below', :required => false %>
-        <%= f.input :equip_id, collection: 1..(Equip.all.count), label: 'Choose your Set' %>
-        <%= f.submit 'Create',  class: "btn btn-primary" %>
-<% end %>
+        <%# <%= f.input :info, :required => false %>
+         <%# <%= f.input :equip_id, collection: 1..(Equip.all.count), label: 'Choose your Set' %>
+        <%# <%= f.submit 'Create',  class: "btn btn-primary" %>
+<%# <% end %>
+
+<div class="login-box">
+  <h2>Put your Session Data below:</h3>
+    <%=simple_form_for @session, html: { class: "form"} do |f| %>
+          <%= f.input :info, label: false ,:required => false %>
+          <%# <%= f.input :equip_id, collection: 1..(Equip.all.count), label: 'Choose your Set' %>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <%= f.submit 'Submit',  class: "butonform centre" %>
+    <% end %>
+</div>

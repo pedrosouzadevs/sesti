@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def create
     @session = Session.new(session_params)
-    @session.user_id = current_user.id
+    # @session.user_id = current_user.id
     if @session.save
       redirect_to session_path(@session.id)
     else
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
 
     @time_session_from = input.match(/(?<from_Datetime>\d{4}-\d{2}-\d{2}, \d{2}:\d{2}:\d{2})/).to_a[1]
     @time_session_to = input.match(/to (?<to_Datetime>\d{4}-\d{2}-\d{2}, \d{2}:\d{2}:\d{2})/).to_a[1]
-    @time_duration = input.match(/Session: (?<duration>\S*)/).to_a
+    @time_duration = input.match(/Session: (?<duration>\S*)/).to_a[1]
 
     # Experience of session ==================================================================================
 
