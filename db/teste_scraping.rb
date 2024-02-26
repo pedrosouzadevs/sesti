@@ -1,6 +1,6 @@
 require "open-uri"
 require "nokogiri"
-require 'rest-client'
+require "rest-client"
 
 @url_helmets = "https://www.tibiawiki.com.br/wiki/Capacetes"
 @url_armors = "https://www.tibiawiki.com.br/wiki/Armaduras"
@@ -10,6 +10,13 @@ require 'rest-client'
 @url_boots = "https://www.tibiawiki.com.br/wiki/Botas"
 @url_quivers = "https://www.tibiawiki.com.br/wiki/Aljavas"
 @url_trinkets = "https://www.tibiawiki.com.br/wiki/Extra_slot"
+
+def save_gifs
+  response = RestClient.get(url)
+  File.open(output_file, 'wb') do |file|
+    file.write(response.body)
+  end
+end
 
 def scrapping_helmets
   html_file = URI.open(@url_helmets).read
@@ -21,31 +28,23 @@ def scrapping_helmets
     helmets_img << "https://www.tibiawiki.com.br/#{image['src']}"# Exibe o atributo src da imagem
   end
   helmets_img.each do |element|
-    name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
     url = element
-    output_folder = "app/assets/images/items/helmets"
-
-    helmets_img.each do |element|
-      name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
-      url = element
-      output_folder = "app/assets/images/items"
-
-      output_file = File.join(output_folder, name)
-
-      response = RestClient.get(url)
-      File.open(output_file, 'wb') do |file|
-        file.write(response.body)
-      end
-      @helmets << {
-        name: name,
-        path: "#{output_folder}/#{element}"
-      }
+    name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
+    gif_filename = "#{name}.gif"
+    output_folder = "/home/pdro/code/pedrosouzadevs/sesti/app/assets/images/items"
+    output_file = File.join(output_folder, gif_filename)
+    if File.exist?(output_file)
+      local_content = File.binread(output_file)
+      remote_content = RestClient.get(url).body
+      local_content == remote_content ? next : save_gifs
     end
+    @helmets << {
+      name: name,
+    path: "#{output_folder}/#{element}"
+    }
   end
+  puts "helmets are saved"
 end
-
-scrapping_helmets
-puts @helmets
 
 def scrapping_armors
   html_file = URI.open(@url_armors).read
@@ -57,12 +56,22 @@ def scrapping_armors
     armors_img << "https://www.tibiawiki.com.br/#{image['src']}"# Exibe o atributo src da imagem
   end
   armors_img.each do |element|
+    url = element
     name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
+    gif_filename = "#{name}.gif"
+    output_folder = "/home/pdro/code/pedrosouzadevs/sesti/app/assets/images/items"
+    output_file = File.join(output_folder, gif_filename)
+    if File.exist?(output_file)
+      local_content = File.binread(output_file)
+      remote_content = RestClient.get(url).body
+      local_content == remote_content ? next : save_gifs
+    end
     @armors << {
       name: name,
-      url_img: element
+      path: "#{output_folder}/#{element}"
     }
   end
+  puts "armors are saved"
 end
 
 def scrapping_shields
@@ -75,12 +84,22 @@ def scrapping_shields
     shields_img << "https://www.tibiawiki.com.br/#{image['src']}"# Exibe o atributo src da imagem
   end
   shields_img.each do |element|
+    url = element
     name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
+    gif_filename = "#{name}.gif"
+    output_folder = "/home/pdro/code/pedrosouzadevs/sesti/app/assets/images/items"
+    output_file = File.join(output_folder, gif_filename)
+    if File.exist?(output_file)
+      local_content = File.binread(output_file)
+      remote_content = RestClient.get(url).body
+      local_content == remote_content ? next : save_gifs
+    end
     @shields << {
       name: name,
-      url_img: element
+      path: "#{output_folder}/#{element}"
     }
   end
+  puts "shields are saved"
 end
 
 def scrapping_legs
@@ -93,12 +112,22 @@ def scrapping_legs
     legs_img << "https://www.tibiawiki.com.br/#{image['src']}"# Exibe o atributo src da imagem
   end
   legs_img.each do |element|
+    url = element
     name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
+    gif_filename = "#{name}.gif"
+    output_folder = "/home/pdro/code/pedrosouzadevs/sesti/app/assets/images/items"
+    output_file = File.join(output_folder, gif_filename)
+    if File.exist?(output_file)
+      local_content = File.binread(output_file)
+      remote_content = RestClient.get(url).body
+      local_content == remote_content ? next : save_gifs
+    end
     @legs << {
       name: name,
-      url_img: element
+      path: "#{output_folder}/#{element}"
     }
   end
+  puts "legs are saved"
 end
 
 def scrapping_spellbooks
@@ -111,12 +140,22 @@ def scrapping_spellbooks
     spellbooks_img << "https://www.tibiawiki.com.br/#{image['src']}"# Exibe o atributo src da imagem
   end
   spellbooks_img.each do |element|
+    url = element
     name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
+    gif_filename = "#{name}.gif"
+    output_folder = "/home/pdro/code/pedrosouzadevs/sesti/app/assets/images/items"
+    output_file = File.join(output_folder, gif_filename)
+    if File.exist?(output_file)
+      local_content = File.binread(output_file)
+      remote_content = RestClient.get(url).body
+      local_content == remote_content ? next : save_gifs
+    end
     @spellbooks << {
       name: name,
-      url_img: element
+      path: "#{output_folder}/#{element}"
     }
   end
+  puts "spellbooks are saved"
 end
 
 def scrapping_boots
@@ -129,12 +168,22 @@ def scrapping_boots
     boots_img << "https://www.tibiawiki.com.br/#{image['src']}"# Exibe o atributo src da imagem
   end
   boots_img.each do |element|
+    url = element
     name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
+    gif_filename = "#{name}.gif"
+    output_folder = "/home/pdro/code/pedrosouzadevs/sesti/app/assets/images/items"
+    output_file = File.join(output_folder, gif_filename)
+    if File.exist?(output_file)
+      local_content = File.binread(output_file)
+      remote_content = RestClient.get(url).body
+      local_content == remote_content ? next : save_gifs
+    end
     @boots << {
       name: name,
-      url_img: element
+      path: "#{output_folder}/#{element}"
     }
   end
+  puts "boots are saved"
 end
 
 def scrapping_quivers
@@ -147,12 +196,22 @@ def scrapping_quivers
     quivers_img << "https://www.tibiawiki.com.br/#{image['src']}"# Exibe o atributo src da imagem
   end
   quivers_img.each do |element|
+    url = element
     name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
+    gif_filename = "#{name}.gif"
+    output_folder = "/home/pdro/code/pedrosouzadevs/sesti/app/assets/images/items"
+    output_file = File.join(output_folder, gif_filename)
+    if File.exist?(output_file)
+      local_content = File.binread(output_file)
+      remote_content = RestClient.get(url).body
+      local_content == remote_content ? next : save_gifs
+    end
     @quivers << {
       name: name,
-      url_img: element
+      path: "#{output_folder}/#{element}"
     }
   end
+  puts "quivers are saved"
 end
 
 def scrapping_trinkets
@@ -165,15 +224,32 @@ def scrapping_trinkets
     trinkets_img << "https://www.tibiawiki.com.br/#{image['src']}"# Exibe o atributo src da imagem
   end
   trinkets_img.each do |element|
+    url = element
     name = File.basename(element, ".*").gsub(/%28/,"(").gsub(/%29/,")").gsub(/%27/,"'").gsub(/_/," ")
+    gif_filename = "#{name}.gif"
+    output_folder = "/home/pdro/code/pedrosouzadevs/sesti/app/assets/images/items"
+    output_file = File.join(output_folder, gif_filename)
+    if File.exist?(output_file)
+      local_content = File.binread(output_file)
+      remote_content = RestClient.get(url).body
+      local_content == remote_content ? next : save_gifs
+    end
     @trinkets << {
       name: name,
-      url_img: element
+      path: "#{output_folder}/#{element}"
     }
   end
+  puts "trinkets are saved"
 end
 
-
+scrapping_armors
+scrapping_boots
+scrapping_helmets
+scrapping_legs
+scrapping_quivers
+scrapping_shields
+scrapping_spellbooks
+scrapping_trinkets
 # Primeiro tem que fazer os hashs e depois botar eles em um array.
 # Após isso juntar os arrays com .append
 # Depois isso usar o .flatten para remover os arrays por fora
