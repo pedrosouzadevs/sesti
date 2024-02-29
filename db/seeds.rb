@@ -397,3 +397,105 @@ garbages.each do |element|
   Item.create!(name: element[:name], path: element[:path])
 end
 puts "Items Created"
+
+urls_creatures = ["https://www.tibiawiki.com.br/wiki/Anf%C3%ADbios", "https://www.tibiawiki.com.br/wiki/Aqu%C3%A1ticos", "https://www.tibiawiki.com.br/wiki/Aves", "https://www.tibiawiki.com.br/wiki/Bosses", "https://www.tibiawiki.com.br/wiki/Constructos", "https://www.tibiawiki.com.br/wiki/Criaturas_M%C3%A1gicas", "https://www.tibiawiki.com.br/wiki/Dem%C3%B4nios", "https://www.tibiawiki.com.br/wiki/Drag%C3%B5es", "https://www.tibiawiki.com.br/wiki/Elementais", "https://www.tibiawiki.com.br/wiki/Extra_Dimensionais", "https://www.tibiawiki.com.br/wiki/Fadas", "https://www.tibiawiki.com.br/wiki/Gigantes", "https://www.tibiawiki.com.br/wiki/Humanos", "https://www.tibiawiki.com.br/wiki/Human%C3%B3ides", "https://www.tibiawiki.com.br/wiki/Imortais", "https://www.tibiawiki.com.br/wiki/Licantropos", "https://www.tibiawiki.com.br/wiki/Mam%C3%ADferos", "https://www.tibiawiki.com.br/wiki/Mortos-Vivos", "https://www.tibiawiki.com.br/wiki/Plantas_(Criatura)", "https://www.tibiawiki.com.br/wiki/R%C3%A9pteis", "https://www.tibiawiki.com.br/wiki/Slimes", "https://www.tibiawiki.com.br/wiki/The_Ruthless_Seven", "https://www.tibiawiki.com.br/wiki/Triangle_of_Terror", "https://www.tibiawiki.com.br/wiki/Vermes"]
+
+creatures_1           = scrapping(creatures_1, urls_creatures[0])
+creatures_2           = scrapping(creatures_2, urls_creatures[1])
+creatures_3           = scrapping(creatures_3, urls_creatures[2])
+creatures_4           = scrapping(creatures_4, urls_creatures[3])
+creatures_5           = scrapping(creatures_5, urls_creatures[4])
+creatures_6           = scrapping(creatures_6, urls_creatures[5])
+creatures_7           = scrapping(creatures_7, urls_creatures[6])
+creatures_8           = scrapping(creatures_8, urls_creatures[7])
+creatures_9           = scrapping(creatures_9, urls_creatures[8])
+creatures_10          = scrapping(creatures_10, urls_creatures[9])
+creatures_11          = scrapping(creatures_11, urls_creatures[10])
+creatures_12          = scrapping(creatures_12, urls_creatures[11])
+creatures_13          = scrapping(creatures_13, urls_creatures[12])
+creatures_14          = scrapping(creatures_14, urls_creatures[13])
+creatures_15          = scrapping(creatures_15, urls_creatures[14])
+creatures_16          = scrapping(creatures_16, urls_creatures[15])
+creatures_17          = scrapping(creatures_17, urls_creatures[16])
+creatures_18          = scrapping(creatures_18, urls_creatures[17])
+creatures_19          = scrapping(creatures_19, urls_creatures[18])
+creatures_20          = scrapping(creatures_20, urls_creatures[19])
+creatures_21          = scrapping(creatures_21, urls_creatures[20])
+creatures_22          = scrapping(creatures_22, urls_creatures[21])
+creatures_23          = scrapping(creatures_23, urls_creatures[22])
+creatures_24          = scrapping(creatures_24, urls_creatures[23])
+
+puts "Creating Creatures"
+creatures_1.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_2.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_3.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_4.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_5.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_6.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_7.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_8.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_8.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_10.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_11.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_12.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_13.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_14.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_15.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_16.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_17.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_18.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_19.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_20.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_21.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_22.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_23.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+creatures_24.each do |element|
+  Creature.create!(name: element[:name], path: element[:path])
+end
+puts "Creatures Created"
