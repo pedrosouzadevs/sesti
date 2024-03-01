@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_191753) do
   create_table "equips", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.bigint "weapon_id", null: false
     t.bigint "helmet_id", null: false
     t.bigint "leg_id", null: false
@@ -82,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_191753) do
     t.index ["quiver_id"], name: "index_equips_on_quiver_id"
     t.index ["ring_id"], name: "index_equips_on_ring_id"
     t.index ["trinket_id"], name: "index_equips_on_trinket_id"
+    t.index ["user_id"], name: "index_equips_on_user_id"
     t.index ["weapon_id"], name: "index_equips_on_weapon_id"
   end
 
@@ -170,9 +172,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_191753) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "equip_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["equip_id"], name: "index_users_on_equip_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -204,11 +204,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_28_191753) do
   add_foreign_key "equips", "quivers"
   add_foreign_key "equips", "rings"
   add_foreign_key "equips", "trinkets"
+  add_foreign_key "equips", "users"
   add_foreign_key "equips", "weapons"
   add_foreign_key "rods", "weapons"
   add_foreign_key "sessions", "equips"
   add_foreign_key "sessions", "users"
   add_foreign_key "swords", "weapons"
-  add_foreign_key "users", "equips"
   add_foreign_key "wands", "weapons"
 end

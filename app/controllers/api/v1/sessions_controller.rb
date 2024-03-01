@@ -1,11 +1,15 @@
-class SessionsController < ApplicationController
+class Api::V1::SessionsController < ApplicationController
+  after_action :authenticate_user!, except: [:index]
+
   def index
     @sessions = Session.all
+    render json: @sessions
   end
 
   def show
     @session = Session.find(params[:id])
     breaking_info(@session.info)
+    render json: @session
   end
 
   def home
@@ -16,10 +20,16 @@ class SessionsController < ApplicationController
     @session = Session.new(session_params)
     # @session.user_id = current_user.id
     if @session.save
-      redirect_to session_path(@session.id)
+      render json: @session, status: :created, location: @session
+      # redirect_to session_path(@session.id)
     else
-      render :home, status: :unprocessable_entity
+      render json: @session.errors, status: :unprocessable_entity
+      # render :home, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @session.destroy
   end
 
   private
